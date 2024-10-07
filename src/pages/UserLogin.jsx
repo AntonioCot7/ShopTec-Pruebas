@@ -11,14 +11,14 @@ const UserLogin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      // Crea un objeto loginData con el email
-      const loginData = { email }; 
-      
-      // Intentar iniciar sesión con el email proporcionado
+      const loginData = { email };       
       await OrderService.loginUsuario(loginData);
-
       const usuario = await OrderService.getUsuarioByEmail(email);
       if (usuario) {
+        console.log(usuario.Usuario)
+        localStorage.setItem('userId', usuario.Usuario.idUsuario);
+        console.log(usuario.Usuario.idUsuario)
+
         alert(`Iniciaste sesión correctamente.`);
         navigate('/');
       } else {
