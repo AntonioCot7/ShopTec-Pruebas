@@ -187,7 +187,7 @@ const OrderService = {
   // Registrar un nuevo usuario
   registerUsuario: async (usuarioData) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/api/usuario/registrar`, usuarioData);
+      const response = await axios.post(`${API_BASE_URL}/api/usuario/registrar/`, usuarioData);
       return response.data;
     } catch (error) {
       throw new Error('Error al registrar el usuario');
@@ -197,10 +197,15 @@ const OrderService = {
   // Iniciar sesión como usuario
   loginUsuario: async (loginData) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/api/usuario/login`, loginData);
-      return response.data;
+        const response = await axios.post(`${API_BASE_URL}/api/usuario/login/`, loginData, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        return response.data;
     } catch (error) {
-      throw new Error('Error al iniciar sesión');
+        console.error('Error al iniciar sesión:', error);
+        throw new Error('Error al iniciar sesión');
     }
   },
 

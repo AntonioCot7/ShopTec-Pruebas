@@ -26,10 +26,17 @@ const PortadaPrincipal = () => {
     setLoading(true);
     try {
       const newProducts = await ProductService.getAllProducts(page, 6); // Obtener 6 productos por página
+      console.log('Productos recibidos:', newProducts); // Agregar este console.log para verificar los datos
       setProducts((prevProducts) => [...prevProducts, ...newProducts.content]); // Agregar productos nuevos a la lista
       setPage(page + 1); // Incrementar la página
     } catch (error) {
-      console.error('Error al obtener productos:', error);
+      if (error.response) {
+        console.error('Error del servidor:', error.response.data);
+      } else if (error.request) {
+        console.error('No se recibió respuesta del servidor:', error.request);
+      } else {
+        console.error('Error al configurar la solicitud:', error.message);
+      }
     }
     setLoading(false);
   };
@@ -37,7 +44,7 @@ const PortadaPrincipal = () => {
   // Llama a la función cuando el componente se monta
   useEffect(() => {
     fetchProducts();
-  }, []);
+  }, []); // Solo se ejecuta una vez cuando se monta el componente
 
   // Manejar el evento de scroll
   useEffect(() => {
@@ -51,7 +58,7 @@ const PortadaPrincipal = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [loading]);
+  }, [loading]); // Dependencia de 'loading'
 
   return (
     <div className="w-screen min-h-screen bg-gray-100"> {/* Ajustar para que cubra toda la pantalla */}

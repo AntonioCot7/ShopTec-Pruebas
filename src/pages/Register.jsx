@@ -21,8 +21,8 @@ const Register = () => {
 
     try {
       // Intentar registrar el usuario
-      const usuarioData = { nombre, apellido, email, telefono, password };
-      const response = await registerUsuario(usuarioData);
+      const usuarioData = { nombre, apellido, email, telefono};
+      const response = await OrderService.registerUsuario(usuarioData);
       if (response) {
         alert('Registro exitoso');
         // Redirigir al login

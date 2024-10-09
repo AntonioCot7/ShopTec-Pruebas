@@ -11,12 +11,15 @@ const UserLogin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
+      // Crea un objeto loginData con el email
+      const loginData = { email }; 
+      
       // Intentar iniciar sesión con el email proporcionado
-      await loginUsuario({ email, password });
+      await OrderService.loginUsuario(loginData);
 
-      const usuario = await getUsuarioByEmail(email);
+      const usuario = await OrderService.getUsuarioByEmail(email);
       if (usuario) {
-        alert(`Iniciaste sesión correctamente. Tu ID de usuario es: ${usuario.idUsuario}`);
+        alert(`Iniciaste sesión correctamente.`);
         navigate('/');
       } else {
         setError('Usuario no encontrado');
