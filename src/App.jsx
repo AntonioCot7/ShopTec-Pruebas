@@ -6,9 +6,12 @@ import UserLogin from './pages/UserLogin';
 import AdminLogin from './pages/AdminLogin';
 import Register from './pages/Register';
 import PortadaPrincipal from './pages/PortadaPrincipal';
-import AdminDashboard from './pages/AdminDashboard'; // Importa AdminDashboard
+import AdminDashboard from './pages/AdminDashboard';
+import Carrito from './pages/Carrito';  // Nueva importación
 
 const App = () => {
+  const userId = 1;  // Aquí deberías obtener el ID del usuario de la sesión
+
   return (
     <Router>
       <Routes>
