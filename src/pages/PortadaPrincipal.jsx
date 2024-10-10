@@ -63,7 +63,7 @@ const PortadaPrincipal = () => {
   return (
     <div className="w-screen min-h-screen bg-gray-100"> {/* Ajustar para que cubra toda la pantalla */}
       {/* Slider de Portadas */}
-      <div className="w-full h-screen"> {/* Ajuste para que el slider cubra toda la pantalla */}
+      <div className="w-full h-auto"> {/* Ajuste para que el slider cubra toda la pantalla */}
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={30}
@@ -86,9 +86,9 @@ const PortadaPrincipal = () => {
       </div>
 
       {/* Lista de productos debajo del slider */}
-      <div className="container mx-auto py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-10">
-        {products.map((product) => (
-          <div key={product.id} className="border p-4 rounded-lg shadow hover:shadow-lg transition">
+      <div className="container mx-auto py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-2"> {/* Cambié mt-10 a mt-2 */}
+        {products.map((product, index) => (
+          <div key={`product-${product.id}-${index}`} className="border p-4 rounded-lg shadow hover:shadow-lg transition">
             <h3 className="text-xl font-bold mb-2">{product.nombre}</h3>
             <p className="text-gray-700 mb-2">{product.descripcion}</p>
             <p className="text-green-600 font-bold text-lg">S/{product.precio}</p>
